@@ -4,7 +4,7 @@ from urllib.request import urlretrieve
 
 
 
-def file_downloader(dowload_url: str, filename: str) -> bool:
+def file_downloader(dowload_url, filename):
     """Downloads a url file and shows progress of the file.
 
     Args:
@@ -39,3 +39,10 @@ def file_downloader(dowload_url: str, filename: str) -> bool:
         return False
 
     return True
+
+
+def download_datasets(urls, prefix=''):
+    for url in urls:
+        #last element in the url
+        filename = prefix + url.split("/")[-1]
+        file_downloader(url, filename)

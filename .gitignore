@@ -1,5 +1,10 @@
 # Created by https://www.gitignore.io/api/python,jupyternotebook
 
+##GZ, CSV
+*.csv
+*.gz
+
+
 ### JupyterNotebook ###
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
