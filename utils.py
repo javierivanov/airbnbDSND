@@ -1,4 +1,5 @@
 import tqdm
+import os.path
 from urllib.request import urlretrieve
 
 
@@ -9,7 +10,7 @@ def file_downloader(dowload_url, filename):
 
     Args:
         download_url(str): File to download.
-        filename(str): Place to store the file to download. 
+        filename(str): Place to store the file to download.
 
     Returns:
         bool: True for success, False otherwise.
@@ -29,7 +30,7 @@ def file_downloader(dowload_url, filename):
     try:
         hook = __hook(unit='B', unit_scale=True, leave=True, miniters=1,
                     desc=filename) # all optional kwargs
-        
+
         #Download function
         urlretrieve(dowload_url,
                     filename=filename, reporthook=hook, data=None)
@@ -45,4 +46,7 @@ def download_datasets(urls, prefix=''):
     for url in urls:
         #last element in the url
         filename = prefix + url.split("/")[-1]
+        if os.path.isfile(filename):
+            print("File: {0}, in cache".format(filename))
+            continue
         file_downloader(url, filename)
